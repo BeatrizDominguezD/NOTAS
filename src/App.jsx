@@ -2,9 +2,8 @@
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>pato tieso</h1>
-      </header>
+        <h3>pato tieso</h3>
+      <input id ="pruebaID" name="Prueba" type="text"/>
     </div>
   );
 }
