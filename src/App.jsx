@@ -2,13 +2,16 @@ import { useState } from "react";
 
 function App() {
 
-  //hooks : Funciones especificas de react todos comienzan con la palabra "use"
+//hooks : Funciones especificas de react todos comienzan con la palabra "use"
 
-  const [inputState,setInputState] = useState({
+  
+  const [inputState,setInputState] = useState  ({
     titulo: "",
     fecha: "",
     nota: "",
   }); //VALOR INICIAL DEL STATE
+
+  
 
   const handleInputChange = (event) => { 
     //console.log(event.target);
@@ -18,8 +21,16 @@ function App() {
         [event.target.name]: event.target.value,
     
     });
-    
+
   };
+
+  const handleResetClick = (e) => {
+    setInputState (0);
+  };
+    
+  
+
+  
 
   return (
 
@@ -57,7 +68,20 @@ function App() {
       onChange={handleInputChange}
       value={inputState.nota}
       />
+
+      <button 
+      type = "button" 
+      className ="btn btn-primary"
+      onClick={handleResetClick}
+      style= {{marginLeft: "5px"}}
+      >
+        RESET
+      
+      </button>
+
+
     </div>
+
   );
 }
 
