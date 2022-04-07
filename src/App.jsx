@@ -4,14 +4,11 @@ function App() {
 
 //hooks : Funciones especificas de react todos comienzan con la palabra "use"
 
-  
   const [inputState,setInputState] = useState  ({
     titulo: "",
     fecha: "",
     nota: "",
   }); //VALOR INICIAL DEL STATE
-
-  
 
   const handleInputChange = (event) => { 
     //console.log(event.target);
@@ -24,31 +21,32 @@ function App() {
 
   };
 
-  const handleResetClick = (e) => {
-    setInputState (0);
+  const handleResetClick = ( ) => {
+    setInputState ({titulo: " ", fecha: " ", nota: " "});
   };
     
-  
-
-  
-
   return (
 
-    <div className="App">
+    <div className="App container">
+      <div className="row">
+       <div className= "col">
+          <h3> LISTAS </h3>
+        </div>
+        <div className="col">
+          <h3> NOTAS </h3>
+        <label className = 'mb-2' > 
 
-        <h3>pato tieso</h3>
+        TITULO 
 
-        <label htmlFor="titulo"> TITULO UWU </label>
-
-      <input 
-      id ="titulo" 
-      name="titulo" 
-      type="text"
-      onChange={handleInputChange}
-      value={inputState.titulo}
-      />
-      
-      
+        <input
+          id ="titulo" 
+          name="titulo" 
+          type="text"
+          onChange={handleInputChange}
+          value={inputState.titulo}
+        />
+      <br />
+      </label>
 
       <label htmlFor="fecha"> FECHA </label>
 
@@ -68,7 +66,11 @@ function App() {
       onChange={handleInputChange}
       value={inputState.nota}
       />
-
+        
+        </div>
+      </div>
+      <hr />
+      <div className=" ms-2 mt-2">
       <button 
       type = "button" 
       className ="btn btn-primary"
@@ -79,7 +81,7 @@ function App() {
       
       </button>
 
-
+    </div>
     </div>
 
   );
