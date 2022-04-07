@@ -4,14 +4,11 @@ function App() {
 
 //hooks : Funciones especificas de react todos comienzan con la palabra "use"
 
-  
   const [inputState,setInputState] = useState  ({
     titulo: "",
     fecha: "",
     nota: "",
   }); //VALOR INICIAL DEL STATE
-
-  
 
   const handleInputChange = (event) => { 
     //console.log(event.target);
@@ -24,14 +21,10 @@ function App() {
 
   };
 
-  const handleResetClick = (e) => {
-    setInputState (0);
+  const handleResetClick = ( ) => {
+    setInputState ({titulo: " ", fecha: " ", nota: " "});
   };
     
-  
-
-  
-
   return (
 
     <div className="App">
