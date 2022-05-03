@@ -17,6 +17,7 @@ function App() {
     });
   };
 
+<<<<<<< HEAD
   const handleInputClean = ( ) => {
     setInputState ({
       titulo: " ", 
@@ -33,6 +34,11 @@ let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
     localStorage.setItem ("notas",JSON.stringify (arregloNotas));
     handleInputClean();
   };
+=======
+  const handleResetClick = ( ) => {
+    setInputState ({titulo: " ", fecha: " ", nota: " "});
+  };
+>>>>>>> 1639617c9f773da1fa4258211b34f20f208a5c6f
     
   return (
 
