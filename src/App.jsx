@@ -49,6 +49,9 @@ let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
                 return (
                   <li>
                     {item.titulo}({item.fecha})
+                    <i 
+                      class="bi bi-x-circle-fill"
+                      style = {{ color: "red", fontSize: "0.75rem"}}></i>
                   </li>
                 );
               })}
