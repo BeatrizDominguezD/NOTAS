@@ -10,6 +10,9 @@ function App() {
     nota: "",
   }); //VALOR INICIAL DEL STATE
 
+  const initialState = JSON.parse (localStorage.getItem ("notas")) || [];
+  const [notas, setNotas] = useState (initialState);
+
   const handleInputChange = (event) => { 
       setInputState({
         ...inputState,
@@ -17,7 +20,6 @@ function App() {
     });
   };
 
-<<<<<<< HEAD
   const handleInputClean = ( ) => {
     setInputState ({
       titulo: " ", 
@@ -26,38 +28,49 @@ function App() {
     });
   };
 
-let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
-
   const handleClickGuardar = ( ) => {
-    let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
-    arregloNotas.push (inputState)
-    localStorage.setItem ("notas",JSON.stringify (arregloNotas));
+    setNotas([...notas, inputState])
+    localStorage.setItem ("notas",JSON.stringify (notas));
     handleInputClean();
   };
-=======
-  const handleResetClick = ( ) => {
-    setInputState ({titulo: " ", fecha: " ", nota: " "});
+
+  const handleBorrarNota = (index) => {
+    const nuevoArreglo = []
+    
+    notas.forEach ((nota, i) => {
+      if (index !== i) {
+        nuevoArreglo.push (nota)
+      }
+    });
+
+    localStorage.setItem ("notas", JSON.stringify (nuevoArreglo))
+    setNotas ([...nuevoArreglo])
   };
->>>>>>> 1639617c9f773da1fa4258211b34f20f208a5c6f
     
   return (
 
     <div className="App container">
       <div className="row">
-       <div className= "col">
+        <div className= "col">
           <h3> LISTAS </h3>
-          {arregloNotas.length === 0 && 
+          {notas.length === 0 && 
             "Al momento no tienes notas guardadas. Puedes crear una en el formulario contiguo"}
           
-          {arregloNotas.length !== 0 && (
+          {notas.length !== 0 && (
             <ol>
-              {arregloNotas.map((item) => {
+              {notas.map((item, index) => {
                 return (
-                  <li>
-                    {item.titulo}({item.fecha})
+                  <li key = {index}>
+                    {item.titulo}({item.fecha}) &nbsp;
                     <i 
-                      class="bi bi-x-circle-fill"
-                      style = {{ color: "red", fontSize: "0.75rem"}}></i>
+                      className = "bi bi-x-circle-fill"
+                      onClick = {() => handleBorrarNota (index)}
+                      style = {{
+                        color: "red",
+                        fontSize: "0.75rem",
+                        cursor: "pointer",
+                      }} 
+                      ></i>
                   </li>
                 );
               })}
@@ -87,7 +100,7 @@ let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
         <input 
           id ="fecha" 
           name="fecha" 
-          type="text"
+          type="date"
           onChange={handleInputChange}
           value={inputState.fecha}
           style = {{ width: "100%"}}
@@ -98,10 +111,9 @@ let arregloNotas = JSON.parse (localStorage.getItem ("notas")) || [];
     <label className = "mb-2" 
     style = {{ width: "100%"}}>
       NOTA
-        <input 
+        <textarea 
           id ="nota" 
           name="nota" 
-          type="text"
           onChange={handleInputChange}
           value={inputState.nota}
           style = {{ width: "100%"}}
