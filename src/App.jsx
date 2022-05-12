@@ -46,6 +46,11 @@ function App() {
     localStorage.setItem ("notas", JSON.stringify (nuevoArreglo))
     setNotas ([...nuevoArreglo])
   };
+
+  const handleClickLimpiaLista = () => {
+    setNotas ([])
+      localStorage.setItem ("notas", JSON.stringify ([]));
+  };
     
   return (
 
@@ -76,6 +81,14 @@ function App() {
               })}
             </ol>
           )}
+          <button 
+            type = "button"
+            className = "btn btn-primary"
+            onClick = {handleClickLimpiaLista}
+            disabled={notas.length === 0}
+            > 
+            Limpia lista
+            </button>
         </div>
         <div className="col">
         <h3> NOTAS </h3>
@@ -137,8 +150,12 @@ function App() {
           <button 
             type="button" 
             className="btn btn primary"
-            onClick={handleClickGuardar}>
-
+            onClick={handleClickGuardar}
+            disabled={
+            inputState.titulo==="" ||
+            inputState.fecha ==="" ||
+            inputState.nota ===""}
+          >
           GUARDAR
               </button>
               </span>
